@@ -1,26 +1,27 @@
-# Segurança em Aplicações Web: SQL Injection e Força Bruta
 
-Este projeto demonstra exemplos de código PHP vulnerável e seguro quanto a ataques de **SQL Injection** e **força bruta**.
+# Proteção contra SQL Injection e Ataques de Força Bruta em Aplicações Web
 
-## 📂 Arquivos
+Este repositório apresenta exemplos práticos em PHP, ilustrando tanto vulnerabilidades quanto boas práticas para prevenir **SQL Injection** e ataques por **força bruta**.
 
-- `inseguro.php`: Código vulnerável que não protege contra SQL Injection nem contra múltiplas tentativas de login.
-- `seguro.php`: Código com melhorias de segurança:
-  - Uso de `PDO` com *prepared statements* para evitar SQL Injection.
-  - Controle de tentativas de login via `$_SESSION` para mitigar ataques de força bruta.
-  - Uso de `password_verify()` para comparar senhas com segurança.
+## 📁 Conteúdo
 
-## 🚨 Tipos de ataques prevenidos
+- `inseguro.php`: Implementação propositalmente vulnerável, sem proteção contra injeção de SQL ou múltiplas tentativas de login.
+- `seguro.php`: Versão com medidas de segurança aplicadas:
+  - Utilização de `PDO` com *prepared statements* para impedir SQL Injection.
+  - Monitoramento de tentativas de login com `$_SESSION`, dificultando ataques automatizados.
+  - Verificação de senhas com `password_verify()` ao invés de comparações diretas.
 
-| Tipo de ataque   | Prevenção                                     |
-|------------------|-----------------------------------------------|
-| SQL Injection    | Uso de `prepare()` e `bindParam()` do PDO     |
-| Força bruta      | Limite de tentativas usando sessão PHP        |
-| Senha em texto plano | Uso de `password_hash()` e `password_verify()` |
+## 🔐 Mecanismos de Defesa Implementados
 
-## 💡 Observações
+| Ataque identificado   | Estratégia de mitigação                          |
+|------------------------|--------------------------------------------------|
+| Injeção de SQL         | Utilização de `prepare()` e `bindParam()` do PDO |
+| Força bruta            | Controle de tentativas por sessão PHP           |
+| Senhas expostas        | Aplicação de `password_hash()` e `password_verify()` |
 
-Para armazenar senhas com segurança no banco de dados:
+## 📝 Dicas de Segurança
+
+Para garantir que as senhas sejam armazenadas de forma segura no banco de dados, utilize:
 
 ```php
 $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
